@@ -18,6 +18,7 @@ const QuizComponent = ({questions, nextQuestion, currentQuestion, correctAnswere
 
     return (
         <div>
+            <div>{currentQuestion + 1} / {questions.length}</div>
             <div>{question.questionTitle}</div>
             {question.options.map(option =>
                 <div onClick={e => chooseAnswer(question.questionId, option)}
