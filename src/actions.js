@@ -12,5 +12,7 @@ export const actions = {
         type: t.CHOOSE_ANSWER,
         questionId,
         option
-    })
+    }),
+
+
 };

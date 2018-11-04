@@ -16,20 +16,31 @@ const QuizComponent = ({questions, nextQuestion, currentQuestion, correctAnswere
     const question = questions[currentQuestion];
     console.log(question);
 
-    return (
-        <div>
-            <div>{currentQuestion + 1} / {questions.length}</div>
-            <div>{question.questionTitle}</div>
-            {question.options.map(option =>
-                <div onClick={e => chooseAnswer(question.questionId, option)}
-                     className={option.chosen ? (option.correct ? correct : wrong) : ''}
-                >
-                    {option.title}
-                </div>
-            )}
-            <button onClick={(e) => nextQuestion(e)}>Next Question</button>
-        </div>
-    );
+    if (currentQuestion < questions.length) {
+        return (
+            <div>
+                <div>{currentQuestion + 1} / {questions.length}</div>
+                <div>{correctAnswered} / {questions.length}</div>
+                <div>{question.questionTitle}</div>
+                {question.options.map(option =>
+                    <div onClick={e => chooseAnswer(question.questionId, option)}
+                         className={option.chosen ? (option.correct ? correct : wrong) : ''}
+                    >
+                        {option.title}
+                    </div>
+                )}
+                <button onClick={(e) => nextQuestion(e)}>Next Question</button>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                You have answered {correctAnswered} from {questions.length} correctly!
+            </div>
+        );
+    }
+
+
 };
 
 const mapStateToProps = (state) => {
